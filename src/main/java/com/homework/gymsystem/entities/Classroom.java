@@ -1,7 +1,8 @@
 package com.homework.gymsystem.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -19,19 +20,18 @@ public class Classroom implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date scheduledTime, startDate, endDate;
-	private Integer duration;
+	private LocalDateTime scheduledTime, startDate, endDate;	//horário agendado
+	private Long duration;
 	
 	public Classroom() {
 		
 	}
-	public Classroom(Long id, Date scheduledTime, Date startDate, Date endDate, Integer duration) {
+	public Classroom(Long id, LocalDateTime scheduledTime, LocalDateTime startDate, LocalDateTime endDate) {
 		super();
 		this.id = id;
 		this.scheduledTime = scheduledTime;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.duration = duration;
 	}
 	
 	public Long getId() {
@@ -40,28 +40,28 @@ public class Classroom implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getScheduledTime() {
+	public LocalDateTime getScheduledTime() {
 		return scheduledTime;
 	}
-	public void setScheduledTime(Date scheduledTime) {
+	public void setScheduledTime(LocalDateTime scheduledTime) {
 		this.scheduledTime = scheduledTime;
 	}
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
-	public Integer getDuration() {
+	public Long getDuration() {
 		return duration;
 	}
-	public void setDuration(Integer duration) {
+	public void setDuration(Long duration) {
 		this.duration = duration;
 	}
 	
@@ -79,6 +79,11 @@ public class Classroom implements Serializable{
 			return false;
 		Classroom other = (Classroom) obj;
 		return Objects.equals(id, other.id);
+	}
+	
+	public Long duration() {
+		Duration duration = Duration.between(getStartDate(), getEndDate());
+		return duration.toDays();
 	}
 
 }
