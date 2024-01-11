@@ -1,42 +1,39 @@
 package com.homework.gymsystem.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_activity")
-public class Activity implements Serializable{
+@Table(name = "tb_instructor")
+public class Instructor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String identityCard;
 	private String name;
+	private LocalDateTime birthDate;
+	private Integer titration;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "activity")
-	private List<Classroom> classrooms = new ArrayList<>();
-	
-	public Activity() {
+	public Instructor() {
 		
 	}
-	public Activity(Long id, String name) {
+	public Instructor(Long id, String identityCard, String name, LocalDateTime birthDate, Integer titration) {
 		super();
 		this.id = id;
+		this.identityCard = identityCard;
 		this.name = name;
-		
+		this.birthDate = birthDate;
+		this.titration = titration;
 	}
 	
 	public Long getId() {
@@ -45,14 +42,29 @@ public class Activity implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getIdentityCard() {
+		return identityCard;
+	}
+	public void setIdentityCard(String identityCard) {
+		this.identityCard = identityCard;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}	
-	public List<Classroom> getClassrooms() {
-		return classrooms;
+	}
+	public LocalDateTime getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(LocalDateTime birthDate) {
+		this.birthDate = birthDate;
+	}
+	public Integer getTitration() {
+		return titration;
+	}
+	public void setTitration(Integer titration) {
+		this.titration = titration;
 	}
 	
 	@Override
@@ -67,7 +79,7 @@ public class Activity implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Activity other = (Activity) obj;
+		Instructor other = (Instructor) obj;
 		return Objects.equals(id, other.id);
 	}
 	
