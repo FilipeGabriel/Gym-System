@@ -56,16 +56,25 @@ public class TestConfig implements CommandLineRunner{
 		Instructor i4 = new Instructor(null, "768.012.285-67", "Instructor 4", LocalDateTime.parse("20/01/1981 00:00", dtf2), 645);
 		instructorRepository.saveAll(Arrays.asList(i1, i2, i3, i4));
 		
-		Classroom c1 = new Classroom(null, LocalDateTime.parse("03/01/2024 18:00", dtf2), LocalDateTime.parse("03/01/2024 00:00", dtf2), LocalDateTime.parse("10/01/2024 00:00", dtf2), a1);
-		Classroom c2 = new Classroom(null, LocalDateTime.parse("03/01/2024 15:00", dtf2), LocalDateTime.parse("04/01/2024 00:00", dtf2), LocalDateTime.parse("15/01/2024 00:00", dtf2), a2);
-		Classroom c3 = new Classroom(null, LocalDateTime.parse("03/01/2024 11:00", dtf2), LocalDateTime.parse("10/03/2024 00:00", dtf2), LocalDateTime.parse("01/04/2024 00:00", dtf2), a1);
-		Classroom c4 = new Classroom(null, LocalDateTime.parse("03/01/2024 22:00", dtf2), LocalDateTime.parse("19/02/2024 00:00", dtf2), LocalDateTime.parse("30/02/2024 00:00", dtf2), a3);
+		
+		Classroom c1 = new Classroom(null, LocalDateTime.parse("03/01/2024 18:00", dtf2), LocalDateTime.parse("03/01/2024 00:00", dtf2), LocalDateTime.parse("10/01/2024 00:00", dtf2), a1, i1);
+		Classroom c2 = new Classroom(null, LocalDateTime.parse("03/01/2024 15:00", dtf2), LocalDateTime.parse("04/01/2024 00:00", dtf2), LocalDateTime.parse("15/01/2024 00:00", dtf2), a2, i2);
+		Classroom c3 = new Classroom(null, LocalDateTime.parse("03/01/2024 11:00", dtf2), LocalDateTime.parse("10/03/2024 00:00", dtf2), LocalDateTime.parse("01/04/2024 00:00", dtf2), a1, i3);
+		Classroom c4 = new Classroom(null, LocalDateTime.parse("03/01/2024 22:00", dtf2), LocalDateTime.parse("19/02/2024 00:00", dtf2), LocalDateTime.parse("05/03/2024 00:00", dtf2), a3, i4);
+		Classroom c5 = new Classroom(null, LocalDateTime.parse("03/01/2024 07:00", dtf2), LocalDateTime.parse("27/09/2024 00:00", dtf2), LocalDateTime.parse("27/10/2024 00:00", dtf2), a3, i2);
+		Classroom c6 = new Classroom(null, LocalDateTime.parse("03/01/2024 08:00", dtf2), LocalDateTime.parse("02/10/2024 00:00", dtf2), LocalDateTime.parse("26/11/2024 00:00", dtf2), a3, i2);
+		Classroom c7 = new Classroom(null, LocalDateTime.parse("03/01/2024 10:00", dtf2), LocalDateTime.parse("06/03/2024 00:00", dtf2), LocalDateTime.parse("15/04/2024 00:00", dtf2), a3, i3);
+		Classroom c8 = new Classroom(null, LocalDateTime.parse("03/01/2024 19:00", dtf2), LocalDateTime.parse("15/06/2024 00:00", dtf2), LocalDateTime.parse("18/08/2024 00:00", dtf2), a3, i1);
 		c1.setDuration(c1.duration());
 		c2.setDuration(c2.duration());
 		c3.setDuration(c3.duration());
-		c4.setDuration(c4.duration());		
-		classroomRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
-			
+		c4.setDuration(c4.duration());
+		c5.setDuration(c5.duration());
+		c6.setDuration(c6.duration());
+		c7.setDuration(c7.duration());
+		c8.setDuration(c8.duration());
+		classroomRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8));
+		
 	}
 	
 }

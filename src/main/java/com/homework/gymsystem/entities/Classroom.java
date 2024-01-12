@@ -5,6 +5,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,16 +31,22 @@ public class Classroom implements Serializable{
 	@JoinColumn(name = "activity")
 	private Activity activity;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "instructor_id")
+	private Instructor instructor;
+	
 	public Classroom() {
 		
 	}
-	public Classroom(Long id, LocalDateTime scheduledTime, LocalDateTime startDate, LocalDateTime endDate, Activity activity) {
+	public Classroom(Long id, LocalDateTime scheduledTime, LocalDateTime startDate, LocalDateTime endDate, Activity activity, Instructor instructor) {
 		super();
 		this.id = id;
 		this.scheduledTime = scheduledTime;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.activity = activity;
+		this.instructor = instructor;
 	}
 	
 	public Long getId() {
@@ -76,6 +84,12 @@ public class Classroom implements Serializable{
 	}
 	public void setActivity(Activity activity) {
 		this.activity = activity;
+	}	
+	public Instructor getInstructor() {
+		return instructor;
+	}
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 	
 	@Override

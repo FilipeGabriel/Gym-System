@@ -2,12 +2,15 @@ package com.homework.gymsystem.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +27,9 @@ public class Instructor implements Serializable{
 	private LocalDateTime birthDate;
 	private Integer titration;
 	
+	@OneToMany(mappedBy = "instructor")
+	private Set<Classroom> classrooms = new HashSet<>();
+			
 	public Instructor() {
 		
 	}
@@ -65,6 +71,9 @@ public class Instructor implements Serializable{
 	}
 	public void setTitration(Integer titration) {
 		this.titration = titration;
+	}	
+	public Set<Classroom> getClassrooms() {
+		return classrooms;
 	}
 	
 	@Override
