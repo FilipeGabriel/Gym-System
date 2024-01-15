@@ -47,8 +47,13 @@ public class TestConfig implements CommandLineRunner{
 		activityRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 				
 		Student s1 = new Student(null, "Filipe", Instant.now(), "Sucupira", "(81)98494-6724", "18/04/1997", 1.81, 65.5f);
-		Student s2 = new Student(null, "Mariana", Instant.now(), "Sucupira", "(81)98494-6724", "24/02/2000", 1.61, 55.5f);		
-		studentRepository.saveAll(Arrays.asList(s1, s2));
+		Student s2 = new Student(null, "Mariana", Instant.now(), "Sucupira", "(81)98494-6724", "24/02/2000", 1.61, 55.5f);
+		Student s3 = new Student(null, "Alice", Instant.now(), "Canadá", "(81)98494-6724", "24/02/2023", 1.50, 40.5f);
+		Student s4 = new Student(null, "Rebeca", Instant.now(), "México", "(81)98494-6724", "31/03/2003", 1.75, 60.0f);
+		Student s5 = new Student(null, "Felix", Instant.now(), "USA", "(81)98494-6724", "01/10/1973", 1.75, 75.5f);
+		Student s6 = new Student(null, "Oberly", Instant.now(), "Dubai", "(81)98494-6724", "15/08/1976", 1.72, 60.5f);
+		Student s7 = new Student(null, "Sophia", Instant.now(), "Totó", "(81)98494-6724", "24/02/2000", 1.60, 50.8f);
+		studentRepository.saveAll(Arrays.asList(s1, s2,s3, s4, s5, s6, s7));
 		
 		Instructor i1 = new Instructor(null, "112.019.554-32", "Instructor 1", LocalDateTime.parse("05/07/1984 00:00", dtf2), 123);
 		Instructor i2 = new Instructor(null, "245.419.644-11", "Instructor 2", LocalDateTime.parse("09/11/1991 00:00", dtf2), 321);
@@ -73,6 +78,14 @@ public class TestConfig implements CommandLineRunner{
 		c6.setDuration(c6.duration());
 		c7.setDuration(c7.duration());
 		c8.setDuration(c8.duration());
+		c1.getStudents().add(s2);
+		c2.getStudents().add(s1);
+		c3.getStudents().add(s7);
+		c4.getStudents().add(s5);
+		c5.getStudents().add(s4);
+		c8.getStudents().add(s1);
+		c1.getStudents().add(s1);
+		c1.getStudents().add(s5);
 		classroomRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8));
 		
 	}

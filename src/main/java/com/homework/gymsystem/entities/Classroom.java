@@ -3,6 +3,8 @@ package com.homework.gymsystem.entities;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -35,6 +39,10 @@ public class Classroom implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "instructor_id")
 	private Instructor instructor;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_registration", joinColumns = @JoinColumn(name = "classroom_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+	private List<Student> students = new ArrayList<>();
 	
 	public Classroom() {
 		
@@ -90,6 +98,9 @@ public class Classroom implements Serializable{
 	}
 	public void setInstructor(Instructor instructor) {
 		this.instructor = instructor;
+	}	
+	public List<Student> getStudents() {
+		return students;
 	}
 	
 	@Override

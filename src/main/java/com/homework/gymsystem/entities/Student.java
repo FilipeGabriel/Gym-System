@@ -2,12 +2,17 @@ package com.homework.gymsystem.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +31,10 @@ public class Student implements Serializable{
 	private String birthDate;
 	private Double height;
 	private Float weight;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "students")
+	private List<Classroom> classrooms = new ArrayList<>();
 	
 	public Student() {
 		
@@ -105,6 +114,9 @@ public class Student implements Serializable{
 
 	public void setWeight(Float weight) {
 		this.weight = weight;
+	}	
+	public List<Classroom> getClassrooms() {
+		return classrooms;
 	}
 	
 	@Override
